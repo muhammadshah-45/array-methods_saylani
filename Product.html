@@ -1,44 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Searching</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .container {
-    width: 100%;
-    background: linear-gradient(138deg, #5b7fe9, #c536838f);
-    height: 6vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container h4{
-    
-    color: white;
-    font-size: 25px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-family: monospace;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    </style>
+    .header {
+      background: linear-gradient(45deg, #4458df, #7c477dc2);
+      height: 67px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 16px #5c5959;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+    }
+
+    .header h4 {
+      color: white;
+      font-size: 27px;
+      text-transform: uppercase;
+      font-family: "DM Sans";
+      font-weight: 500;
+      text-shadow: 0 0 26px #000000a3;
+    }
+
+    .product-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 8rem auto;
+    }
+
+    .product-list {
+      width: 53%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 19px #808080b5, inset 0 0 42px #0000001a;
+      padding: 20px 25px;
+      margin: 4rem;
+      border-radius: 23px;
+    }
+
+    .product-container input {
+      width: 53%;
+      padding: 10px;
+      border-radius: 43px;
+      border: 1px solid gray;
+      font-weight: 600;
+      font-family: "DM Sans";
+    }
+
+    .product-list h4 {
+      font-size: 26px;
+      font-family: monospace;
+      font-weight: 600;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .product-list p {
+      color: #808080d9;
+      font-size: 18px;
+      width: 76%;
+      font-family: monospace;
+      margin-bottom: 2rem;
+    }
+
+    .product-list img {
+      width: 30%;
+      object-fit: contain;
+    }
+
+    .price-div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .price-div span {
+      color: #13a64a;
+      font-weight: 700;
+      font-size: 20px;
+      font-family: "DM Sans";
+      margin-top: 6px;
+    }
+
+    .price-div .cart-btn {
+      background: transparent;
+      text-transform: uppercase;
+      padding: 7px 9px;
+      border: 2px solid black;
+      border-radius: 17px;
+      font-family: "DM Sans";
+      font-weight: 600;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.4s ease-in;
+    }
+
+    .price-div .cart-btn:hover {
+      background-color: black;
+      color: white;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <h4>Product Searching</h4>
-    </div>
 
-    <div>
-        <input type="text" name="" id='input' placeholder="Search here...">
-        <div id="product-list"></div>
+<body>
+  <div class="header">
+    <h4>Product Searching</h4>
+  </div>
+  <div class="product-container">
+    <input type="text" name="" placeholder="Search Products here..." id="search-input">
+    <div class="product-list" id="product-list">
     </div>
-    <script src="product.js"></script>
+  </div>
+  <script>
+    import { products } from "./output.js";
+
+    console.log(products);
+
+    let searchInput = document.getElementById("search-input");
+    let productList = document.getElementById("product-list");
+
+    const getFilteredProducts = (searchQuery) => {
+      const filteredArrayProducts = products.filter((product) => {
+        return product.title.toLowerCase().includes(searchQuery);
+      });
+      return filteredArrayProducts;
+    };
+
+    const displayProducts = (products) => {
+      productList.innerHTML = "";
+      products.forEach((product) => {
+        //product title
+        let productItem = document.createElement("h4");
+        productItem.textContent = product.title;
+        productList.appendChild(productItem);
+        //product details
+        let productDetails = document.createElement("p");
+        productDetails.textContent =
+          product.description.split(" ").slice(0, 16).join(" ") + "...";
+        productList.appendChild(productDetails);
+        //product image
+        let productImage = document.createElement("img");
+        productImage.src = product.image;
+        productList.appendChild(productImage);
+        console.log(productImage);
+        //create a div for price and button
+        let priceDiv = document.createElement("div");
+        priceDiv.setAttribute("class", "price-div");
+        let price = document.createElement("span");
+        price.textContent = `$ ${product.price}`;
+        priceDiv.appendChild(price);
+        //add to cart button
+        let cartBtn = document.createElement("button");
+        cartBtn.textContent = "Add to Cart";
+        cartBtn.classList.add("cart-btn");
+        priceDiv.appendChild(cartBtn);
+        productList.appendChild(priceDiv);
+      });
+    };
+
+    searchInput.addEventListener("input", (e) => {
+      const searchQuery = e.target.value.trim();
+      const filtered = getFilteredProducts(searchQuery);
+      displayProducts(filtered);
+    });
+
+    displayProducts(products);
+
+  </script>
+  <script type="module" src="./script.js"></script>
 </body>
+
 </html>
