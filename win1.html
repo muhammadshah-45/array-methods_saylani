@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win 1</title>
+</head>
+<body>
+    <h1>Array Methods</h1>
+<script>
+
+    let student = [
+        {id:1,name:"Muhammad Shah"},
+        {id:2,name:"Naveed Shah"},
+        {id:3,name:"Rowaid Shah"},
+        {id:4,name:"Dawood Shah"},
+        {id:5,name:"Ali Shah"},
+        {id:6,name:"Rehman Shah"},
+        {id:7,name:"Farman Shah"},
+
+    ]
+
+    let newArray = student.map((item)=> {
+        if(item.name === "Rehman Shah"){
+            return item.name;
+        }
+        return item;
+
+    })
+    console.log(newArray)
+
+    let newFilteredArray = student.filter((item)=>{
+          return item.id === 5;
+    })
+    console.log(newFilteredArray)
+</script>
+</body>
+</html>

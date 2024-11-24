@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistake 4</title>
+</head>
+<body>
+    <ul id="itemList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+
+    </ul>
+    <script>
+        //Get all the list items
+        const listItems = document.getElementById("itemList")
+        listItems.addEventListener("click",(event)=>{
+            if(event.target.matches("li")){
+                event.target.style.color = "blue"
+            }
+        })
+        //Add a click event Listeners 
+        // listItems.forEach(item=>{
+        //     item.addEventListener("click",()=>{
+        //         event.target.style.color = "purple"
+        //         event.target.style.margin = "3px"
+        //         event.target.style.backgroundColor = "green";
+        //         event.target.style.padding="10px"
+        //     })
+        // })
+    </script>
+</body>
+</html>
