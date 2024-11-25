@@ -1,0 +1,116 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background: linear-gradient(45deg, #4458df, #7c477dc2);
+  height: 67px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 16px #5c5959;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.header h4 {
+  color: white;
+  font-size: 27px;
+  text-transform: uppercase;
+  font-family: "DM Sans";
+  font-weight: 500;
+  text-shadow: 0 0 26px #000000a3;
+}
+
+.product-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem auto;
+}
+
+.product-list {
+  width: 53%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 19px #808080b5, inset 0 0 42px #0000001a;
+  padding: 20px 25px;
+  margin: 4rem;
+  border-radius: 23px;
+}
+
+.product-container input {
+  width: 53%;
+  padding: 10px;
+  border-radius: 43px;
+  border: 1px solid gray;
+  font-weight: 600;
+  font-family: "DM Sans";
+}
+
+.product-list h4 {
+  font-size: 26px;
+  font-family: monospace;
+  font-weight: 600;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.product-list p {
+  color: #808080d9;
+  font-size: 18px;
+  width: 76%;
+  font-family: monospace;
+  margin-bottom: 2rem;
+}
+
+.product-list img {
+  width: 30%;
+  object-fit: contain;
+}
+
+.price-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-div span {
+  color: #13a64a;
+  font-weight: 700;
+  font-size: 20px;
+  font-family: "DM Sans";
+  margin-top: 6px;
+}
+
+.price-div .cart-btn {
+  background: transparent;
+  text-transform: uppercase;
+  padding: 7px 9px;
+  border: 2px solid black;
+  border-radius: 17px;
+  font-family: "DM Sans";
+  font-weight: 600;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+
+.price-div .cart-btn:hover {
+  background-color: black;
+  color: white;
+}
