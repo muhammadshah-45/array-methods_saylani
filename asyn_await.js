@@ -23,17 +23,48 @@ const p = new Promise((resolve,reject)=>{
 //async and await combo is used to handle promises.
 
 const promise = new Promise((resolve,reject)=>{
-    resolve("Promise has resolved.")
+    setTimeout(() => {
+        resolve("Promise has resolved.")
+    }, 5000);
 })
 
+const promise2 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve("Promise 2 has resolved.")
+    }, 10000);
+})
 
-async function handleData() {
+async function handlePromise() {
+    console.log("hello Shah")
+    //JS Engine was waiting for promise to resolved 
     const value = await promise;
+    console.log("Promise 1")
     console.log(value);
+    //both promise were print at after interval time.
+    const value2 = await promise2;
+    console.log("Promise 2");
+    console.log(value2)
 }
+handlePromise()
+// function getData(){
+//    //JS Engine will not wait for promise to be resolved 
+//   promise.then(res => console.log(res))
+//   console.log("Muhammad shah")
+// }
 
-function getData(){
-  promise.then(res => console.log(res))
+// getData()
+
+
+//Difference between handling the (Promise using async await) && (the normal older way)
+const GITHUB_API = 'https://api.github.com/users/muhammadshah-45'
+
+
+async function handleFetchData() {
+   const data = await fetch(GITHUB_API);
+   //fetch()=> it gives you a response 
+   const jsonValue =await data.json();
+
+  console.log(jsonValue)
 }
-
-getData()
+// fetch(GITHUB_API).then(res =>res.json()).then(result => console.log(result));
+handleFetchData();
